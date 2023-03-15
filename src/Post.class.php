@@ -3,11 +3,13 @@ class Post {
     private int $id;
     private string $filename;
     private string $timestamp;
+    private string $name;
 
-    function __construct(int $i, string $f, string $t) {
+    function __construct(int $i, string $f, string $t, string $v) {
         $this->id = $i;
         $this->filename = $f;
         $this->timestamp = $t;
+        $this->name = $v;
     }
 
     public function getFilename() : string {
@@ -15,6 +17,9 @@ class Post {
     }
     public function getTimestamp() : string {
         return $this->timestamp;
+    }
+    public function getText() : string {
+        return $this->name;
     }
 
     static function getLast() : Post {
