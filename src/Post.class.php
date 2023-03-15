@@ -23,7 +23,7 @@ class Post {
         $query->execute();
         $result = $query->get_result();
         $row = $result->fetch_assoc();
-        $p = new Post($row['id'], $row['filename'], $row['timestamp']);
+        $p = new Post($row['id'], $row['filename'], $row['timestamp'],$row['name']);
         return $p; 
     }
 
@@ -36,7 +36,7 @@ class Post {
         $result = $query->get_result();
         $postsArray = array();
         while($row = $result->fetch_assoc()) {
-            $post = new Post($row['id'],$row['filename'],$row['timestamp']);
+            $post = new Post($row['id'],$row['filename'],$row['timestamp'],$row['name']);
             array_push($postsArray, $post);
         }
         return $postsArray;
@@ -59,9 +59,10 @@ class Post {
         imagewebp($gdImage, $newFileName);
 
         global $db;
-        $query = $db->prepare("INSERT INTO cms VALUES(NULL, ?, ?)");
+        $dbText = $_POST["uploadedText"];
+        $query = $db->prepare("INSERT INTO cms VALUES(NULL, ?, ?, ?)");
         $dbTimestamp = date("Y-m-d H:i:s");
-        $query->bind_param("ss", $dbTimestamp, $newFileName);
+        $query->bind_param("sss", $dbTimestamp, $newFileName, $dbText);
         if(!$query->execute())
             die("Błąd zapisu do bazy danych");
 

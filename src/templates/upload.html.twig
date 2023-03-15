@@ -3,8 +3,12 @@
 <form action="" method="post" enctype="multipart/form-data">
     <label for="uploadedFileInput">
         Wybierz plik do wgrania na serwer:
+    <input type="file" name="uploadedFile" id="uploadedFileInput" required>
+        </label><br>
+        <label for="uploadedFileInput">
+        Wybierz nazwę pliku:
+    <input type="text" name="uploadedText" id="uploadedFileInput" required>
     </label><br>
-    <input type="file" name="uploadedFile" id="uploadedFileInput" required><br>
     <input type="submit" value="Wyślij plik" name="submit"><br>
 </form>
 {% include 'footer.html.twig' %} 
