@@ -19,7 +19,7 @@ class Post {
 
     static function getLast() : Post {
         global $db;
-        $query = $db->prepare("SELECT * FROM post ORDER BY timestamp DESC LIMIT 1");
+        $query = $db->prepare("SELECT * FROM cms ORDER BY timestamp DESC LIMIT 1");
         $query->execute();
         $result = $query->get_result();
         $row = $result->fetch_assoc();
@@ -29,7 +29,7 @@ class Post {
 
     static function getPage(int $pageNumber = 1, int $postsPerPage = 10) : array {
         global $db;
-        $query = $db->prepare("SELECT * FROM post ORDER BY timestamp DESC LIMIT ? OFFSET ?");
+        $query = $db->prepare("SELECT * FROM cms ORDER BY timestamp DESC LIMIT ? OFFSET ?");
         $offset = ($pageNumber-1)*$postsPerPage;
         $query->bind_param('ii', $postsPerPage, $offset);
         $query->execute();
@@ -59,7 +59,7 @@ class Post {
         imagewebp($gdImage, $newFileName);
 
         global $db;
-        $query = $db->prepare("INSERT INTO post VALUES(NULL, ?, ?)");
+        $query = $db->prepare("INSERT INTO cms VALUES(NULL, ?, ?)");
         $dbTimestamp = date("Y-m-d H:i:s");
         $query->bind_param("ss", $dbTimestamp, $newFileName);
         if(!$query->execute())
