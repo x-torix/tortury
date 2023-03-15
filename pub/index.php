@@ -5,12 +5,16 @@ use Steampixel\Route;
 
 Route::add('/', function() {
     global $twig;
-    $twig->display("index.html.twig");
+    $postArray = Post::getPage();
+    $twigData = array("postArray" => $postArray,
+                        "pageTitle" => "Strona główna");
+    $twig->display("index.html.twig", $twigData);
 });
 
 Route::add('/upload', function() {
     global $twig;
-    $twig->display("upload.html.twig");
+    $twigData = array("pageTitle" => "Wgraj mema");
+    $twig->display("upload.html.twig", $twigData);
 });
 
 Route::add('/upload', function() {
@@ -18,8 +22,8 @@ Route::add('/upload', function() {
     if(isset($_POST['submit']))  {
         Post::upload($_FILES['uploadedFile']['tmp_name']);
     }
-    $twig->display("index.html.twig");
+    header("Location: http://localhost/tortury/pub");
 }, 'post');
 
-Route::run('/cms/pub');
+Route::run('/tortury/pub');
 ?>
