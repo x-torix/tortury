@@ -3,15 +3,15 @@ class Post {
     private int $id;
     private string $filename;
     private string $timestamp;
-    private string $title;
+    private string $name;
     private string $authorId;
     private string $authorName;
 
-    function __construct(int $i, string $f, string $t, string $title, int $authorId ) {
+    function __construct(int $i, string $f, string $t, string $name, int $authorId ) {
         $this->id = $i;
         $this->filename = $f;
         $this->timestamp = $t;
-        $this->title = $title;
+        $this->name = $name;
         $this->authorId = $authorId;
         global $db;
         $this->authorName = User::getNameById($this->authorId);
@@ -24,7 +24,7 @@ class Post {
         return $this->timestamp;
     }
     public function getTitle() : string {
-        return $this->title;
+        return $this->name;
     }
     public function getAuthorName() : string {
         return $this->authorName;
@@ -36,19 +36,19 @@ class Post {
         $query->execute();
         $result = $query->get_result();
         $row = $result->fetch_assoc();
-        $p = new Post($row['id'], $row['filename'], $row['timestamp'], $row['title'], $row['userId']);
+        $p = new Post($row['id'], $row['filename'], $row['timestamp'], $row['name'], $row['user_id']);
         return $p; 
     }
     static function getPage(int $pageNumber = 1, int $postsPerPage = 10) : array {
         global $db;
-        $query = $db->prepare("SELECT * FROM post ORDER BY timestamp DESC LIMIT ? OFFSET ?");
+        $query = $db->prepare("SELECT * FROM cms ORDER BY timestamp DESC LIMIT ? OFFSET ?");
         $offset = ($pageNumber-1)*$postsPerPage;
         $query->bind_param('ii', $postsPerPage, $offset);
         $query->execute();
         $result = $query->get_result();
         $postsArray = array();
         while($row = $result->fetch_assoc()) {
-            $post = new Post($row['id'],$row['filename'],$row['timestamp'], $row['title'], $row['userId']);
+            $post = new Post($row['id'],$row['filename'],$row['timestamp'], $row['name'], $row['user_id']);
             array_push($postsArray, $post);
         }
         return $postsArray;

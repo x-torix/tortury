@@ -12,10 +12,10 @@ class User {
     public function getName() : string {
         return $this->email;
     }
-    public static function getNameById(int $userId) : string {
+    public static function getNameById(int $user_id) : string {
         global $db;
         $query = $db->prepare("SELECT email FROM user WHERE id = ? LIMIT 1");
-        $query->bind_param('i', $userId);
+        $query->bind_param('i', $user_id);
         $query->execute();
         $result = $query->get_result();
         $row = $result->fetch_assoc();
