@@ -3,15 +3,15 @@ class Post {
     private int $id;
     private string $filename;
     private string $timestamp;
-    private string $name;
+    private string $title ;
     private string $authorId;
     private string $authorName;
 
-    function __construct(int $i, string $f, string $t, string $name, int $authorId ) {
+    function __construct(int $i, string $f, string $t, string $title , int $authorId ) {
         $this->id = $i;
         $this->filename = $f;
         $this->timestamp = $t;
-        $this->name = $name;
+        $this->title = $title ;
         $this->authorId = $authorId;
         global $db;
         $this->authorName = User::getNameById($this->authorId);
@@ -24,7 +24,7 @@ class Post {
         return $this->timestamp;
     }
     public function getTitle() : string {
-        return $this->name;
+        return $this->title ;
     }
     public function getAuthorName() : string {
         return $this->authorName;
@@ -36,7 +36,7 @@ class Post {
         $query->execute();
         $result = $query->get_result();
         $row = $result->fetch_assoc();
-        $p = new Post($row['id'], $row['filename'], $row['timestamp'], $row['name'], $row['user_id']);
+        $p = new Post($row['id'], $row['filename'], $row['timestamp'], $row['title '], $row['user_id']);
         return $p; 
     }
     static function getPage(int $pageNumber = 1, int $postsPerPage = 10) : array {
@@ -48,7 +48,7 @@ class Post {
         $result = $query->get_result();
         $postsArray = array();
         while($row = $result->fetch_assoc()) {
-            $post = new Post($row['id'],$row['filename'],$row['timestamp'], $row['name'], $row['user_id']);
+            $post = new Post($row['id'],$row['filename'],$row['timestamp'], $row['title'], $row['user_id']);
             array_push($postsArray, $post);
         }
         return $postsArray;
