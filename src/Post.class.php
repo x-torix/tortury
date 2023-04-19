@@ -77,5 +77,11 @@ class Post {
             die("Błąd zapisu do bazy danych");
 
     }
+    public static function remove($id) : bool {
+        global $db;
+        $query = $db->prepare("UPDATE post SET removed = 1 WHERE id = ?");
+        $query->bind_param("i", $id);
+        return $query->execute();
+    }
 }
 ?>
