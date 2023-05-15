@@ -25,7 +25,7 @@ Route::add('/upload', function() {
 Route::add('/upload', function() {
     global $twig;
     if(isset($_POST['submit']))  {
-        Post::upload($_FILES['uploadedFile']['tmp_name'], $_POST['title'], $_POST['userId']);
+        Post::upload($_FILES['uploadedFile']['tmp_name'], $_POST['getTitle'], $_POST['userId']);
     }
     header("Location: http://localhost/tortury/pub");
 }, 'post');

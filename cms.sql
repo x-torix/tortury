@@ -40,7 +40,7 @@ CREATE TABLE `cms` (
 -- Zrzut danych tabeli `cms`
 --
 
-INSERT INTO `cms` (`id`, `timestamp`, `filename`, `title`, `user_id`, `remove`) VALUES
+INSERT INTO `cms` (`id`, `timestamp`, `filename`, `getTitle`, `user_id`, `remove`) VALUES
 (1, '2023-03-15 14:53:53', 'img/7306731e1da903b5c64f5e2a8c41a6143b33d4b73aaa358aef7de0a33ed84396.webp', 'adad', 1, 0),
 (2, '2023-03-15 15:36:48', 'img/0223d1e210a4f1ebbaf395b933b6ae7c6eb7c8e76301932ae5d266a3c46e4566.webp', 'XDDDD', 1, 0),
 (3, '2023-03-22 13:53:55', 'img/170471f330fde442d0170df2b8f3c705a0d96cd07e0c9fa80578f7949a45032d.webp', 'piękne', 1, 0),
