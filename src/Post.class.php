@@ -3,7 +3,7 @@ class Post {
     private int $id;
     private string $filename;
     private string $timestamp;
-    private string $getTitle ;
+    private string $title ;
     private string $authorId;
     private string $authorName;
     private int $score;
@@ -13,7 +13,7 @@ class Post {
         $this->id = $i;
         $this->filename = $f;
         $this->timestamp = $t;
-        $this->getTitle = $getTitle ;
+        $this->title = $getTitle ;
         $this->authorId = $authorId;
         global $db;
         $this->authorName = User::getNameById($this->authorId);
@@ -30,7 +30,7 @@ class Post {
     public function getTimestamp() : string {
         return $this->timestamp;
     }
-    public function getTitle() : string {
+    public function title() : string {
         return $this->getTitle ;
     }
     public function getAuthorName() : string {
