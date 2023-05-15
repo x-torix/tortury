@@ -67,7 +67,7 @@ class Post {
         return $postsArray;
     }
 
-    static function upload(string $tempFileName, string $title, int $userId) {
+    static function upload(string $tempFileName, string $getTitle, int $userId) {
         $targetDir = "img/";
         $imgInfo = getimagesize($tempFileName);
         if(!is_array($imgInfo)) {
