@@ -1,21 +1,36 @@
 {% include 'header.html.twig' %}
 <div id="pageContainer">
-<h1>Wgraj obrazek</h1>
-{% if user is defined %}
-    <div id="loggedUser">Zalogowany użytkownik: {{ user.getName() }} </div>
-    {% endif %}
+<h1>{{pageTitle}}</h1>
+{% if  user is defined %}
+<div id="loggedUser">
+    Zalogowany użytkownik: {{ user.getName }}
+</div>   
+
+{% endif%}
 <form action="" method="post" enctype="multipart/form-data">
     <label for="uploadedFileInput">
         Wybierz plik do wgrania na serwer:
-    <input type="file" name="uploadedFile" id="uploadedFileInput" required>
-        </label><br>
-        <label for="uploadedFileInput">
-        Wybierz nazwę pliku:
-    <input type="text" name="get+" id="uploadedFileInput" required>
     </label><br>
-     {% if user is defined %}
-        <input type="hidden" name="userId" value={{ user.getId() }}>
-        {% endif %}
+    <input type="file" name="uploadedFile" id="uploadedFileInput" required><br>
+    {% if user is defined %}
+    <input type="hidden" name="userID" value="{{ user.getID }}">
+    {% endif %}
+    <label for="uploadedFileNameInput">
+        Wybierz tytuł mema 
+    </label><br>
+    <input type="text" name="uploadedTitle" id="uploadedFileNameInput" required><br>
     <input type="submit" value="Wyślij plik" name="submit"><br>
 </form>
-{% include 'footer.html.twig' %} 
+
+<br/>
+<br/>
+<br/>
+<div>
+<img src="anime-laugh-anime-smile.gif" style="border: 5px solid #555; position: absolute;
+right: 150px;">
+</div>
+
+</div>
+
+
+{% include 'footer.html.twig' %}

@@ -2,27 +2,33 @@
 <div id="pageContainer">
 <table>
     <tr>
-    <th>Miniatura</th>
-    <th>Tytuł</th>
-    <th>Autor</th>
-    <th>Czas</th>
-    <th>Wyklucz</th>
+        <th>Miniatura</th>
+        <th>Tytuł</th>
+        <th>Autor</th> 
+        <th>Czas</th>
+        <th>Wyklucz</th>
     </tr>
     {% for post in postArray %}
-        <tr>
-        <td><img class="thumbnail"
-                src="{{post.getFilename()}}"></td>
-        <td>{{ post.getTitle() }} </td>
-        
-        <td>{{post.getAuthorName() }}</td>
-        <td>{{ post.getTimestamp() }} </td>
+<div id="post">
+    <tr>
+        <td><img class="thumbnail" src="./../{{post.getFilename()}}" alt=""></td>
+        <td>Tytuł: {{post.getTitle()}}</td>
+        <td>Autor: {{post.getAuthorName()}}</td>
+        <td>Data dodania: {{post.getTimestamp()}}</td>  
         <td>
-        <a href="admin/remove/{{post.getId()}}">BAN</a>
+            <a href="admin/remove/{{post.getID}}">BAN</a>
         </td>
-        <tr>
-    {% endfor %}
-</table>
+    </tr>
+    
+    
+    
+
 </div>
+{% endfor %}  
+
+</table>
 
 
-{% include 'footer.html.twig' %}
+
+{% include 'footer.html.twig' %}    
+</div>

@@ -1,6 +1,9 @@
 {
+    "name": "1157376/projekt-jakis-tam",
+    "type": "project",
+    "minimum-stability": "dev",
     "require": {
-        "twig/twig": "^3.5",
-        "steampixel/simple-php-router": "^0.7.1"
+        "steampixel/simple-php-router": "dev-master",
+        "twig/twig": "3.x-dev"
     }
 }
